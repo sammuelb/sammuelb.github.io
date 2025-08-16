@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basingstoke</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('32c0b1dd-b7cd-47a2-a7b0-def1243c2ca8/f4cbfe5c-839d-4784-a1b8-a6393233697e.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="32c0b1dd-b7cd-47a2-a7b0-def1243c2ca8/6ce8935c-8efa-48ac-8b5c-a7cec0df27d2.ico"/> Basingstoke</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="32c0b1dd-b7cd-47a2-a7b0-def1243c2ca8/eda0d16a-5d25-47af-85ad-bac23714a00e.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-4/16/2022">4/16/2022</a> 10:07:49</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-5/3/2022">5/3/2022</a> 20:59:26</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-$Check Out">$Check Out</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Playnite">Playnite</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Wanderer">Wanderer</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-4/27/2018">4/27/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-66">66</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Puppy Games">Puppy Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Puppy Games">Puppy Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Remote Play On TV">Remote Play On TV</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Stats">Stats</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/336940" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/336940/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/336940/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=336940" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/336940" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=336940" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/336940/achievements" target="_blank">Achievements</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-[EMT] Logo Missing">[EMT] Logo Missing</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Basingstoke is a <strong>tense roguelike</strong> that mixes <strong>stealth and arcade action</strong>. Explore the smouldering ruins of apocalyptic Basingstoke, UK, a world of <strong>extreme peril</strong> where reanimated undead and ferocious alien monsters roam!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/336940/extras/GIF-test.jpg?t=1593159572" /><h2 class="bb_tag">Scavenge and Craft</h2><br>Loot and craft as you explore. <strong>Lob</strong> a tasty sausage roll as a diversion, or <strong>poison</strong> a kebab for bait. <strong>Sneak</strong> up and knock a monster out with a <strong>whack</strong> from a cricket bat, or <strong>slice</strong> them up with a chainsaw. <strong>Tranquillize</strong> them with a dart fired from a homemade blowpipe, or <strong>set them alight</strong> with a DIY flamethrower. There's over a hundred useable items to loot or craft!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/336940/extras/basingstoke-crafting.png?t=1593159572" /><h2 class="bb_tag">No Second Chances</h2><br>Use stealth to <strong>sneak</strong>, weapons to <strong>attack</strong>, or if all else fails, <strong>run!</strong> But be very careful - one bite and you'll be <strong>ripped apart</strong> to become a tasty snack for monsters! Violence is your last resort. <strong>Sneaking</strong>, <strong>skullduggery</strong>, and <strong>ambush</strong> are your tactics.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/336940/extras/keep-left-1.jpg?t=1593159572" /><h2 class="bb_tag">What is Basingstoke?</h2><br>Basingstoke is a town in England, renowned for its charming mix of hand crafted and procedurally generated features. Explore, above and below ground, and enjoy its many attractions. <strong>Rob</strong> a parking ticket machine, <strong>vandalise</strong> a keep left sign, go <strong>shopping</strong> at the OMNImart24/7... or if things get a bit much, <strong>hide</strong> in a wheelie bin.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/336940/extras/pipebomb-1.jpg?t=1593159572" /><h2 class="bb_tag">Unlockable Characters</h2><br>As you progress you'll unlock <strong>new characters</strong>. Start as a <strong>Tourist</strong> and capture those special moments with your <strong>selfie stick</strong> or splurge at the shops with your OmniBank <strong>GoldCard</strong>. Play as the <strong>Thief</strong> and use your <strong>Locksmith</strong> gadget to crack security panels and break safes. Each character has specialist equipment, unique crafting recipes... and <strong>hats</strong>!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/336940/extras/basingstoke-classes.png?t=1593159572" /><h2 class="bb_tag">Achievements and Trading Cards</h2><br>The Royal Mint have issued a special commemorative set of <strong>Basingstoke themed coins</strong> to celebrate The Apocalypse. 1p, 2p, 10p, 20p and 50p coins can be yours, as well as an especially shiny pound coin. Collect them all, and a full range of <strong>achievements, trading cards, profile backgrounds</strong> and <strong>emoticons</strong>! Unfortunately we're not allowed to show you a picture in the store, you'll have to earn them by playing :)<h2 class="bb_tag">Welcome to Basingstoke!</h2><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/336940/extras/header2.jpg?t=1593159572" />
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

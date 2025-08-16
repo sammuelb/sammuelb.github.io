@@ -1,0 +1,341 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Portal Collection</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('bdb4e667-8436-4e0f-8dc9-321617b85a6b/00cbdd67-b7cd-46c9-a8a7-a5e3a62aaf59.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="bdb4e667-8436-4e0f-8dc9-321617b85a6b/8380529c-8ea8-48e8-8029-3dd6f8a6a54a.jpg"/> Portal Collection</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="bdb4e667-8436-4e0f-8dc9-321617b85a6b/d95b7d70-8176-41f8-bf73-9d879d77e744.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-4/16/2022">4/16/2022</a> 10:07:50</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-4/23/2022">4/23/2022</a> 16:04:01</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-$Check Out">$Check Out</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Playnite">Playnite</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Wanderer">Wanderer</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-4/18/2011">4/18/2011</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-98">98</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-95">95</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Valve">Valve</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Valve">Valve</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Op">Co-Op</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Remote Play On TV">Remote Play On TV</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen">Shared/Split Screen</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen Co-Op">Shared/Split Screen Co-Op</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Stats">Stats</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/620" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/620/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/620/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=620" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/620" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=620" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/620/achievements" target="_blank">Achievements</a><br/><a href="https://steamcommunity.com/app/620/workshop/" target="_blank">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-[EMT] Logo Missing">[EMT] Logo Missing</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h3>Screenshots (Click to enlarge)</h3>
+<p><a href="http://en.riotpixels.com/games/portal/screenshots/224/?utm_source=emb-gfx-html&utm_medium=image&utm_campaign=rp-mass" rel="noopener" target="_blank"><img src="https://s01.riotpixels.net/data/9e/df/9edfd92b-0e31-4462-a50c-8d1cad6c7b48.jpg.240p.jpg" width="178" height="100" border="0"></a><a href="http://en.riotpixels.com/games/portal/screenshots/166/?utm_source=emb-gfx-html&utm_medium=image&utm_campaign=rp-mass" rel="noopener" target="_blank"><img src="https://s01.riotpixels.net/data/1e/7e/1e7ec94b-6236-4b44-96a3-22abc2249475.jpg.240p.jpg" width="178" height="100" border="0"></a><a href="http://en.riotpixels.com/games/portal/screenshots/273/?utm_source=emb-gfx-html&utm_medium=image&utm_campaign=rp-mass" rel="noopener" target="_blank"><img src="https://s01.riotpixels.net/data/cc/fd/ccfd3a8d-9f67-4d88-a967-e0a1c8c507d5.jpg.240p.jpg" width="178" height="100" border="0"></a><br><a href="http://en.riotpixels.com/games/portal-2/screenshots/1085/?utm_source=emb-gfx-html&utm_medium=image&utm_campaign=rp-mass" rel="noopener" target="_blank"><img src="https://s01.riotpixels.net/data/35/50/35500677-1e78-40ab-bbd2-8c60b465a19e.jpg.240p.jpg" width="178" height="100" border="0"></a><a href="http://en.riotpixels.com/games/portal-2/screenshots/1052/?utm_source=emb-gfx-html&utm_medium=image&utm_campaign=rp-mass" rel="noopener" target="_blank"><img src="https://s01.riotpixels.net/data/1d/f7/1df7c284-e62d-425a-8060-bcf58e1ddd6c.jpg.240p.jpg" width="178" height="100" border="0"></a><a href="http://en.riotpixels.com/games/portal-2/screenshots/991/?utm_source=emb-gfx-html&utm_medium=image&utm_campaign=rp-mass" rel="noopener" target="_blank"><img src="https://s01.riotpixels.net/data/d5/99/d5993337-9e42-4336-ab85-f816abfecfc8.jpg.240p.jpg" width="178" height="100" border="0"></a></p>
+<h3>Included Content</h3>
+<ul>
+    <li>Portal, Build 466272 (December 12, 2014)</li>
+    <li>Portal 2, Build 4968168 (May 1, 2020)</li>
+    <li>Portal Stories: Mel, Build 3719897 (December 6, 2017)</li>
+    <li>Aperture Tag, Build 568280 (March 27, 2015) &ndash; Community Mod</li>
+    <li>Thinking With Time Machine, Build 859339 (October 13, 2016) &ndash; Community Mod</li>
+    <li>Portal 2: Sixense Perceptual Pack, Build 213449 (November 15, 2015) &ndash; REQUIRES Creative Senz3D camera</li>
+    <li>Portal Stories: VR, Build 1122204 (May 16, 2016) &ndash; REQUIRES HTC Vive Headset</li>
+    <li>Portal 2: The Final Hours, Build 25834 (June 16, 2014) &ndash; Digital Book</li>
+    <li>Four Soundtracks (Portal, Portal 2, Portal Stories: Mel, Aperture Tag)</li>
+</ul>
+<h3>Repack Features</h3>
+<ul>
+    <li>Based on latest Steam builds for games and mods mentioned above: 47.1 GB</li>
+    <li>LumaEmu and SSE cracks applied for different games depending on their Steam API version, thanks to Steam006 and syahmixp!</li>
+    <li>Co-op_Launcher_v1.09-dekart811 &amp; Portal_2_Co-op_Loader_by_Helifax are available in &ldquo;Portal 2\NoDVD&rdquo; after installation</li>
+    <li>100% Lossless &amp; MD5 Perfect: all files are identical to originals after installation</li>
+    <li>NOTHING ripped, NOTHING re-encoded</li>
+    <li>By default the following games/mods are installed with all text languages and English audio: Portal, Portal 2, Portal Stories: Mel, Aperture Tag, Thinking With Time Machine</li>
+    <li>Selective Download feature: you may skip downloading and installing of the following content: co-op/advertising videos for Portal 2, four additional voiceover packs for Portal and Portal 2, Portal Stories: VR, Portal 2: The Final Hours, Portal 2: Sixense Perceptual Pack and soundtracks</li>
+    <li>Significantly smaller archive size (compressed from cumulative 47.1 to 7.8~11.1 GB, depending on selected components)</li>
+    <li>Installation takes 15-30 minutes (depending on your system and selected components)</li>
+    <li>After-install integrity check so you could make sure that everything installed properly</li>
+    <li>HDD space after installation: up to 47 GB</li>
+    <li>Use &ldquo;Portal Collection.exe&rdquo; in collection root for game selection and changing their languages</li>
+    <li>Repack uses XTool library by Razor12911</li>
+    <li>At least 2 GB of free RAM (inc. virtual) required for installing this repack</li>
+    <li>Many thanks to Christsnatcher, who helped me a lot with this repack</li>
+</ul>
+<div>
+    <div tabindex="0">Game Description</div>
+    <div>Portal is a single player game from Valve. Set in the mysterious Aperture Science Laboratories, Portal has been called one of the most innovative new games on the horizon and will offer gamers hours of unique gameplay.<p><br></p>
+        <p>The game is designed to change the way players approach, manipulate, and surmise the possibilities in a given environment; similar to how Half-Life&reg; 2&rsquo;s Gravity Gun innovated new ways to leverage an object in any given situation.</p>
+        <hr>
+        <p>Portal 2 draws from the award-winning formula of innovative gameplay, story, and music that earned the original Portal over 70 industry accolades and created a cult following.</p>
+        <p>The single-player portion of Portal 2 introduces a cast of dynamic new characters, a host of fresh puzzle elements, and a much larger set of devious test chambers. Players will explore never-before-seen areas of the Aperture Science Labs and be reunited with GLaDOS, the occasionally murderous computer companion who guided them through the original game.</p>
+        <hr>
+        <p>Portal Stories: Mel is a community made, free modification for Portal 2 based in the Portal universe.</p>
+        <p>It tells the story of Mel, who meets a new personality core and faces an undiscovered threat to the Aperture facility.</p>
+        <hr>
+        <p>Aperture Tag: The Paint Gun Testing Initiative is a community-made mod for Portal 2, inspired by TAG! The Power of Paint. The familiar Portal 2 gels are now contained within the Aperture Science Paint Gun Device and it&rsquo;s your job to test it out!</p>
+        <p>Featuring a new personality-core and an original story with 27 polished levels; the mod offers an exciting and fun experience in varied and interesting new locations throughout Aperture Science.</p>
+        <hr>
+        <p>Thinking with Time Machine is a Portal 2 mod in which you will find and use a Time Machine to create a twin of yourself from the past to help you solve the puzzles. The past self accurately repeats all of the player&rsquo;s actions, creating a unique twist on familiar Portal game mechanics.</p>
+        <hr>
+        <p>Portal 2 Sixense Perceptual Pack is a free stand-alone game, developed with the Intel Perceptual Computing SDK, custom-designed for exclusive use with the Creative Senz3D depth and gesture camera, which is required to play this title.</p>
+        <hr>
+        <p>Portal Stories: VR is a brand new mini story set in the Portal Universe. It features 10 brand new puzzles, specifically designed to work using the 360 degrees room scale that SteamVR offers. Inside Aperture, you&rsquo;ll be able to use the new &ldquo;Aperture Science Instant Teleportation Device&rdquo; and the &ldquo;Aperture Science Apparatus Retrieval Tool&rdquo; to solve the new tests.</p>
+        <p>Powered by Unreal Engine 4, Portal Stories: VR gives the Aperture Science facility a whole fresh look. With new models, textures, particles and more!</p>
+        <p>An HTC Vive Headset is required in order to play.</p>
+        <hr>
+        <p>The Final Hours of Portal 2 takes you deep within the top-secret offices of Valve for an unvarnished look at the creative process behind the new video game Portal 2. Journalist Geoff Keighley was granted unprecedented &ldquo;fly on the wall&rdquo; access to Valve to create this staggering 15,000 word multimedia experience. From the hush-hush Portal prequel that was shelved to the last minute scramble to complete the game&rsquo;s story, The Final Hours of Portal 2 is a gripping and dramatic story brought to life by exclusive photos, videos, interviews, interactive experiences, and other surprises.</p>
+    </div>
+</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

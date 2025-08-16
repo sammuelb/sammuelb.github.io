@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Vigilantes</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('fe3d4f11-0dc5-4792-b1b2-344cf243ab94/aaaf3ba0-54e2-4335-a609-d02c62593c85.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="fe3d4f11-0dc5-4792-b1b2-344cf243ab94/9b277021-58d6-40ee-8f65-ca24f6b1bd3c.ico"/> Vigilantes</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="fe3d4f11-0dc5-4792-b1b2-344cf243ab94/3705353a-4a3d-4ab2-9aa7-ed71e8d40b74.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-4/16/2022">4/16/2022</a> 10:07:50</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-5/3/2022">5/3/2022</a> 21:04:16</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-$Check Out">$Check Out</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Playnite">Playnite</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Wanderer">Wanderer</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-10/3/2018">10/3/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-76">76</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Timeslip Softworks">Timeslip Softworks</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Timeslip Softworks">Timeslip Softworks</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/545600" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/545600/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/545600/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=545600" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/545600" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=545600" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/545600/achievements" target="_blank">Achievements</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-[EMT] Logo Missing">[EMT] Logo Missing</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h2 class="bb_tag">Next Game Announced!</h2>Prometheus Wept, a turn and party based RPG in a setting which combines post-apocalyptic with a splash of cyberpunk, now has a Steam page. If you'd like to be notified of updates, you can add it to your wishlist and sign up to the community hub.<br><br><a href="https://store.steampowered.com/app/1208110/Prometheus_Wept/" target="_blank" rel="noreferrer"  id="dynamiclink_1" >https://store.steampowered.com/app/1208110/Prometheus_Wept/</a><h2 class="bb_tag">About Vigilantes</h2>Vigilantes is a combat focused, turn-based tactical RPG set in the declining, crime riddled city of Reiker. The game offers hardcore squad-level combat in a gritty neo-noir setting, intel gathering through surveillance and interrogation, a detailed character system, base facilities, crafting, and much more.<h2 class="bb_tag">Key Features</h2><ul class="bb_ul"><li>Party-Based Tactical Combat System, including lethal and non-lethal attacks, powerful perk-based activated abilities, attacks of opportunity, cover, aimed and special attacks.<br></li><li>Deep Character System: build the ultimate crime-fighting team using the UPLIFT system which comprises 6 stats, 9 skills and allows for a variety of viable builds. Further customise your characters with over 60 perks.<br></li><li>Gather Intel: Run surveillance and interrogate defeated enemies to locate each gang's leadership and facilities.<br></li><li>Story: Experience the hard-boiled story of a group of vigilantes waging war against the overwhelming might of the criminal underworld. Gain advantages in combat through skill checks and choices in dialogue, and help out citizens in need.<br></li><li>Adversary System: If an enemy manages to flee, they will become more powerful and you will have to face them again later. Take them down quick!<br></li><li>Crafting: Upgrade weapons from 9 distinct classes and craft special items, such as hot-loaded ammo, armour, and medical items. <br></li><li>Base Facilities: Build and upgrade 5 facilities (gym, library, firing range, surgery, workshop) to gain bonuses and access advanced crafting options.<br></li><li>Reactive AI: An enemy that reacts to your actions, by setting up ambushes, and is responsible for recruitment, building facilities, improving gang equipment and training.</li></ul><br>So What Sets Vigilantes Apart From Other Games?<h2 class="bb_tag">1: Setting</h2>I'm sure you've noticed that the vast majority of turn based games favour fantasy or sci-fi settings. How many turn based games have you played that don't feature aliens, orcs, mutants, wizards, or bandits as antagonists? With Vigilantes, we wanted to offer you something fresh: a modern, neon drenched, rainy city in the midst of an unprecedented crime wave, supported by hard-boiled prose that brings the setting to life. It's no country for sorcerers or laser guns, but brace yourself for psychotic mob hitmen, molotov wielding doomsday cultists, and paramilitary survivalist snipers!<h2 class="bb_tag">2: Intel Gathering</h2>You can't take down vast criminal organisations by getting into street fights with low level hoods. Surveillance operations can reveal basic information on the extent of a gang's presence in a city district, or how much wealth they are gaining from operations there. To put a gang out of commission, you must locate and eliminate their boss, and smash their facilities. To do this, you must fight your way up the gang hierarchy, using your skills and equipment, such as truth serum, to break them in interrogation.<h2 class="bb_tag">3: Adversary System &amp; A Reactive Enemy</h2>When's the last time you saw an enemy attempt to flee in a turn based RPG? What happens if they escape, and come gunning for you down the line, more experienced and powerful than ever? When an enemy runs, will you give chase, or focus on active threats?<h2 class="bb_tag"></h2>The gangs will not sit back and allow you to dismantle their operations. They will carry out criminal operations, using the ill gotten proceeds on recruitment, equipment, training, and building buff providing rackets. Success comes with its own risks in Vigilantes. Once you get a gang's attention, they will dispatch deadly lieutenants to ambush and track you down. You may very well set out as the hunter and find yourself the hunted.<h2 class="bb_tag">Will I Like This Game? Should I Buy Vigilantes?</h2>The demo we released for Kickstarter is around 18 months old now, so it doesn't offer a good indication of the game's current features, content, polish, and balance. Thankfully, Steam offers a no quibble refund policy if you have spent less than 2 hours playing and have purchased less than 2 weeks ago, allowing you to see if you like Vigilantes, without committing to a purchase. While you won't be able to experience everything the game has to offer in 2 hours, it will give you a good idea of what to expect. Vigilantes is continually being improved, and we take feedback on board, so if you tend not to play Early Access games, please consider adding Vigilantes to your wishlist!
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

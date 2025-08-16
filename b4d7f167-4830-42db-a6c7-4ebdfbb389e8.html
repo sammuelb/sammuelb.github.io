@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Last of Us Part II Remastered</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('b4d7f167-4830-42db-a6c7-4ebdfbb389e8/a7de5ffe-e6f9-44b2-8963-ec747152a3a6.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="b4d7f167-4830-42db-a6c7-4ebdfbb389e8/07e2bb9e-0611-45d8-9415-806948e78054.ico"/> The Last of Us Part II Remastered</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="b4d7f167-4830-42db-a6c7-4ebdfbb389e8/bccb35ff-be8c-4c54-a08e-0d812aae27ff.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-4/12/2025">4/12/2025</a> 6:46:15</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-4/12/2025">4/12/2025</a> 6:46:25</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-#Want to Play">#Want to Play</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-PlayStation">PlayStation</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-PlayStation">PlayStation</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-Sony PlayStation 5">Sony PlayStation 5</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-4/3/2025">4/3/2025</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-86">86</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-87">87</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Iron Galaxy Studios">Iron Galaxy Studios</a><br/><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Naughty Dog LLC">Naughty Dog LLC</a><br/><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Nixxes Software">Nixxes Software</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-PlayStation Publishing LLC">PlayStation Publishing LLC</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Family Sharing">Family Sharing</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-HDR Available">HDR Available</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single-Player">Single-Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://en.wikipedia.org/wiki/The_Last_of_Us_Part_II" target="_blank">Wikipedia</a><br/><a href="https://www.playstation.com/games/the-last-of-us-part-ii-remastered" target="_blank">Official</a><br/><a href="https://www.twitch.tv/directory/category/the-last-of-us-part-ii-remastered" target="_blank">Twitch</a><br/><a href="https://www.youtube.com/channel/UCM5XON12SANWANmVjf2T6qA" target="_blank">YouTube</a><br/><a href="https://www.reddit.com/r/thelastofus/" target="_blank">Reddit</a><br/><a href="https://thelastofus.fandom.com/wiki/The_Last_of_Us_Part_II_Remastered" target="_blank">Wikia</a><br/><a href="https://store.steampowered.com/app/2531310" target="_blank">Steam</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph">Edition includes: </p><ul class="bb_ul"><li><p class="bb_paragraph">The Last of Us Part II Remastered</p></li></ul><h2 class="bb_tag">ELLIE &amp; ABBY’S JOURNEY NOW ON PC</h2><p class="bb_paragraph"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/extras/T2R-PC_Announce-trlr_HQ_GIF_003.gif?t=1743700473" /></p><p class="bb_paragraph"></p><p class="bb_paragraph">Experience the winner of over 300 Game of the Year awards now with an array of technical enhancements that make The Last of Us Part II Remastered the definitive way to play Ellie and Abby’s critically acclaimed story.</p><p class="bb_paragraph"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/extras/T2R-PC_Announce-trlr_HQ_GIF_006.gif?t=1743700473" /></p><p class="bb_paragraph"></p><p class="bb_paragraph">Five years after their dangerous journey across the post-pandemic United States, Ellie and Joel have settled down in Jackson, Wyoming. Living amongst a thriving community of survivors has allowed them peace and stability, despite the constant threat of the infected and other, more desperate survivors. When a violent event disrupts that peace, Ellie embarks on a relentless journey to carry out justice and find closure.</p><p class="bb_paragraph"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/extras/T2R_PC_LAUNCH_SCREENSHOT_003.png?t=1743700473" /></p><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>Added features</strong></p><p class="bb_paragraph"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/extras/T2R-PC_Announce-trlr_HQ_GIF_005.gif?t=1743700473" /></p><p class="bb_paragraph"></p><p class="bb_paragraph">The Last of Us Part II Remastered enhances the original game in ways not possible before, including key PC features:  </p><ul class="bb_ul"><li><p class="bb_paragraph">A host of graphical improvements bring the beautiful-yet-dangerous world to life.  </p></li></ul><ul class="bb_ul"><li><p class="bb_paragraph">Full PlayStation® DualSense controller integration with adaptive trigger and haptic feedback functionality.¹</p></li></ul><p class="bb_paragraph"></p><p class="bb_paragraph"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/extras/T2R_PC_LAUNCH_GIFS_DualSense_Support.gif?t=1743700473" /></p><p class="bb_paragraph"></p><ul class="bb_ul"><li><p class="bb_paragraph">Earn and collect exciting achievements on Steam as you progress through the game.</p></li></ul><ul class="bb_ul"><li><p class="bb_paragraph">Widescreen and Ultrawide support.²</p></li></ul><p class="bb_paragraph"></p><p class="bb_paragraph"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/extras/T2R_PC_LAUNCH_ULTRA_WIDE.gif?t=1743700473" /></p><p class="bb_paragraph"></p><ul class="bb_ul"><li><p class="bb_paragraph">HDR support.³</p></li><li><p class="bb_paragraph">PC Display and Graphics Menu for scalability.</p></li><li><p class="bb_paragraph">DirectStorage support. </p></li><li><p class="bb_paragraph"><strong>PC Optimized graphics</strong></p><p class="bb_paragraph">Performance enhancing technologies including NVIDIA DLSS 3, AMD FSR 3.1, and AMD FSR 4.0 with upscaling and frame generation. Intel XeSS is also supported⁴</p></li><li><p class="bb_paragraph"><strong>Full gamepad support</strong></p><p class="bb_paragraph">Adjust the controls to suit your preferences for a smooth and intuitive experience throughout the game.</p></li><li><p class="bb_paragraph"><strong>Mouse and keyboard mapping</strong></p><p class="bb_paragraph">Take full control and ensure personalized gameplay experience by tailoring mouse and keyboard mapping to suit your playstyle.</p></li><li><p class="bb_paragraph"><strong>PlayStation® overlay and Trophy support</strong></p><p class="bb_paragraph">The PlayStation overlay is available for Windows PC players with an account for PlayStation Network to earn PlayStation Trophies and access Friends lists, settings, and player profile.</p></li></ul><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>No Return – A Roguelike Survival Mode</strong></p><p class="bb_paragraph"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/extras/T2R-PC_AnnounceTrailer_ScreenShots_012.png?t=1743700473" /></p><p class="bb_paragraph"></p><p class="bb_paragraph">Experience The Last of Us Part II’s deep combat via an entirely new mode! Survive as long as you can in each run, as you choose your path through a series of randomized encounters. Play as a host of different unlockable characters, each with unique gameplay traits. The variety of challenges features different foes and memorable locations from throughout Part II, all culminating in tense boss battles.</p><p class="bb_paragraph"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/extras/T2R_PC_LAUNCH_SCREENSHOT_021.png?t=1743700473" /></p><ul class="bb_ul"><li><p class="bb_paragraph">Two new unlockable No Return characters are included</p></li></ul><ul class="bb_ul"><li><p class="bb_paragraph">Four new unlockable maps to challenge</p></li></ul><p class="bb_paragraph">  </p><p class="bb_paragraph"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/extras/CR0998_T2R_PC_No_Return_AllMaps_16x9.jpg?t=1743700473" /></p><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>More ways to play</strong> </p><p class="bb_paragraph"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/extras/T2R-PC_Announce-trlr_HQ_GIF_002.gif?t=1743700473" /></p><p class="bb_paragraph"></p><ul class="bb_ul"><li><p class="bb_paragraph">Delve deeper into this beloved adventure and learn how the original game was created. </p></li><li><p class="bb_paragraph">Lost Levels lets you explore early-development versions of three levels not seen in the original.  </p></li><li><p class="bb_paragraph">Enjoy hours of developer commentary to hear insights into Part II’s development as you experience the game.  </p></li><li><p class="bb_paragraph">Live up to your musical potential with Guitar Free Play, which includes unlockable instruments, or take on the Speedrun Mode⁵ and post your best times.  </p></li><li><p class="bb_paragraph">Descriptive Audio⁶ and Speech to Vibrations¹ have also been added to Part II's suite of accessibility features. </p></li><li><p class="bb_paragraph">The Last of Us Part II Remastered also features unlockable character and weapon skins for players to use for both Ellie and Abby.</p></li></ul><p class="bb_paragraph"></p><p class="bb_paragraph">¹ Wired connection required to experience the full range of in-game DualSense controller features. </p><p class="bb_paragraph">²Compatible PC and display device required. </p><p class="bb_paragraph">³Compatible PC and HDR display device required. </p><p class="bb_paragraph">⁴Compatible PC and graphics card required. </p><p class="bb_paragraph">⁵Game progression required to unlock. </p><p class="bb_paragraph">⁶Only available for audio supported languages. </p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

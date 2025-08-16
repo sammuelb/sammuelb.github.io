@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Meet Your Maker</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('555c5906-7ed6-4313-be2b-1e76e1a827d8/f73f9b56-a140-4a32-a9d0-5ceb240a505c.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="555c5906-7ed6-4313-be2b-1e76e1a827d8/057346bc-b54c-41ba-bde6-c912c584b78d.ico"/> Meet Your Maker</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="555c5906-7ed6-4313-be2b-1e76e1a827d8/ecc3fe0b-9b00-4afa-be58-3b9a1bbdf9b5.png"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-4/8/2023">4/8/2023</a> 12:29:18</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-4/8/2023">4/8/2023</a> 12:29:40</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-$Check Out">$Check Out</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-PlayStation">PlayStation</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-PlayStation">PlayStation</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-Sony PlayStation 5">Sony PlayStation 5</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-4/4/2023">4/4/2023</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-79">79</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-90">90</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Behaviour Interactive Inc.">Behaviour Interactive Inc.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Behaviour Interactive Inc.">Behaviour Interactive Inc.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Op">Co-Op</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multi-Player">Multi-Player</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single-Player">Single-Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/1194810" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1194810/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1194810/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=1194810" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/1194810" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1194810" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-[EMT] Logo Missing">[EMT] Logo Missing</a><br/><a href="#quicklink-PlayStation Plus">PlayStation Plus</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<img src="https://cdn.akamai.steamstatic.com/steam/apps/1194810/extras/AM3261_MYM_steamstorepage_about_gifassets_template_V6_world-dying.png?t=1680625531" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1194810/extras/AM3261_MYM_steamstorepage_about_gifassets_headline01.png?t=1680625531" /><br>You are the Custodian of the Chimera, a living experiment created as a last resort to save life on Earth. Enter a tactical battle for the planet’s most coveted resource and the key to your Chimera’s evolution: pure Genetic Material. Construct and fortify brutal Outposts to extract and guard your Genmat. Infiltrate and outsmart other players’ Outposts to gather more. Adapt, upgrade, and evolve... or die trying. <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1194810/extras/AM3261_MYM_steamstorepage_about_gifassets_template_V5A_create-destroy.png?t=1680625531" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1194810/extras/AM3261_MYM_steamstorepage_about_gifassets_headline02.png?t=1680625531" /><br>Build a maze of devious deathtraps designed to lure, outwit, and kill trespassing players. Combine a huge array of customizable blocks, traps, and guards. Pre-record custom patrol paths for your guards with the innovative AI recording system. Share your Outposts and watch other players take them on. Reap rewards from those who die, learn how to strengthen your creation from those who live, and never lose progress or resources by being raided. <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1194810/extras/AM3261_MYM_steamstorepage_about_gifassets_template_V5A_outwit-survive.png?t=1680625531" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1194810/extras/AM3261_MYM_steamstorepage_about_gifassets_headline03.png?t=1680625531" /><br>Test your grit, wit, and reflexes by tactically raiding other players’ Outposts. Get in, grab the Genmat, and try to make it out alive. Gain an edge by choosing the right loadout (melee, ranged, defensive), perks, and consumables  to match your challenge or playstyle. Take another step forward with every attempt. Reveal a new strategy with every death. Master every Outpost that stands in your way.  <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1194810/extras/AM3261_MYM_steamstorepage_about_gifassets_template_V6_cooperate-connect.png?t=1680625531" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1194810/extras/AM3261_MYM_steamstorepage_about_gifassets_headline04.png?t=1680625531" /><br>Combine your creativity and build with a friend or join forces to raid Outposts as a team of two. Watch raiders challenge your Outposts via the replay system and never miss a kill. Grow your Outpost’s reputation with community feedback as Raiders award accolades that best describe your creation. Easily find your friends and favorite Builders with the Social Raid menu and play their Outposts any time.<h2 class="bb_tag"><strong>Key Features</strong></h2> <br><u></u><br><strong>Asynchronous Gameplay</strong><br>Build when you want, how you want. Even once live, no Outpost is complete until you say it is. Watch its performance, iterate to make it even deadlier, and raid for more resources as often as you like along the way.  <br> <br><strong>Outpost Building</strong><br>Immerse yourself in block-based, first-person level design.  Claim plots of land and use a variety of blocks, traps, and guards to extract and protect Genmat while creating a deadly challenge for other players to face. <br> <br><strong>Outpost Raiding</strong><br>Jump into a Raider suit, choose your loadout, and switch to intense first-person action as you take on player-built Outposts. Destroy traps and guards for additional building resources and upgrades while raiding for Genmat. <br><br><strong>Customization</strong><br>A deep, ever-expanding toolbox of traps, guards, mods, and augments deliver a nearly endless combination of creative and strategic options as you fortify underground or build into the sky. Add cosmetics to bring atmosphere, personality, and even distractions to your creation. <br><br><strong>Progression &amp; Upgrades</strong><br>Provide the Chimera and your 5 specialized Advisors with Genmat to unlock and upgrade your arsenal of traps, guards, weapons, suits, and more. Prestige your Outposts to prolong their lifespan and gain even greater rewards.  <br><br><strong>Accolades &amp; Social Raids</strong><br>Lethal labyrinth? Bullet inferno? Creative masterpiece? Don’t just build an Outpost. Design an experience. Raiders select accolades to describe your creation, rewarding ingenuity, originality, and helping grow its reputation. The Social Raid menu easily connects you to your friends’ or favorite Builders’ Outposts to play at any time.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

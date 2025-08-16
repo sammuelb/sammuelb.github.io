@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>THE KING OF FIGHTERS XV</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('99a66602-dd11-41cd-92dd-11604ff15abe/12dce28c-02ba-49e4-a3a0-4081a415641c.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="99a66602-dd11-41cd-92dd-11604ff15abe/f3380fd7-dde0-43a7-85fa-9463618e1e56.ico"/> THE KING OF FIGHTERS XV</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="99a66602-dd11-41cd-92dd-11604ff15abe/47e53480-4853-423e-893b-fad1b95dceec.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-7/4/2025">7/4/2025</a> 10:18:09</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-7/4/2025">7/4/2025</a> 10:18:39</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-Not Interested">Not Interested</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-PlayStation">PlayStation</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-PlayStation">PlayStation</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-Sony PlayStation 5">Sony PlayStation 5</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-12/12/2024">12/12/2024</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-81">81</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-85">85</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-SNK CORPORATION">SNK CORPORATION</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-SNK CORPORATION">SNK CORPORATION</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Family Sharing">Family Sharing</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multi-Player">Multi-Player</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Remote Play Together">Remote Play Together</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen">Shared/Split Screen</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen Pvp">Shared/Split Screen Pvp</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single-Player">Single-Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://www.snk-corp.co.jp/us/games/kof-xv" target="_blank">Official</a><br/><a href="https://www.twitch.tv/snkofficial" target="_blank">Twitch</a><br/><a href="https://www.youtube.com/user/snkplaymoreGame" target="_blank">YouTube</a><br/><a href="https://www.facebook.com/SNK.KOFWORLD" target="_blank">Facebook</a><br/><a href="https://twitter.com/SNKPofficial" target="_blank">Twitter</a><br/><a href="https://discord.gg/dGRrJFFFPN" target="_blank">Discord</a><br/><a href="https://www.reddit.com/r/kof" target="_blank">Reddit</a><br/><a href="https://snk.fandom.com/wiki/The_King_of_Fighters_XV" target="_blank">Wikia</a><br/><a href="https://en.wikipedia.org/wiki/The_King_of_Fighters_XV" target="_blank">Wikipedia</a><br/><a href="https://www.epicgames.com/store/p/the-king-of-fighters-xv--deluxe-edition" target="_blank">Epic</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-PlayStation Plus">PlayStation Plus</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph"><strong>  THE KING OF FIGHTERS XV Standard Edition</strong>[Product Contents]<br>- &quot;THE KING OF FIGHTERS XV&quot; Base game<br><br>[Special Bonus]<br>- Exclusive Bonus<br>KOF XV DLC Costume &quot;CLASSIC LEONA&quot;<br><br>------------------<br> <br><strong>THE KING OF FIGHTERS XV Deluxe Edition</strong>[Product Contents] <br> - &quot;THE KING OF FIGHTERS XV&quot; Base game <br>- KOF XV DLC Characters &quot;Team GAROU&quot; <br>- KOF XV DLC Characters &quot;Team SOUTH TOWN&quot; </p><p class="bb_paragraph">[Special Bonus]</p><p class="bb_paragraph">- Exclusive Bonus <br>KOF XV DLC Costume &quot;CLASSIC LEONA&quot;  <br>  <br>------------------ <br><br><strong>THE KING OF FIGHTERS XV Ultimate Edition </strong>[Product Contents]<strong> </strong><strong></strong>- &quot;THE KING OF FIGHTERS XV&quot; Base game</p><p class="bb_paragraph">- KOF XV Team Pass 1</p><p class="bb_paragraph">- KOF XV Team Pass 2</p><p class="bb_paragraph">- KOF XV Fighter Pass</p><p class="bb_paragraph">- KOF XV DLC Character &quot;MATURE&quot; and &quot;VICE&quot;</p><p class="bb_paragraph">- KOF XV DLC Costume &quot;GAROU: MotW TERRY&quot;</p><p class="bb_paragraph">- KOF XV DLC Costume &quot;CLASSIC LEONA&quot;<br><br>------------------ </p><p class="bb_paragraph">[Game Content]</p><p class="bb_paragraph">SHATTER ALL EXPECTATIONS!</p><p class="bb_paragraph">Transcend beyond your limits with KOF XV!</p><p class="bb_paragraph"></p><p class="bb_paragraph">Since its debut in 1994, the KOF fighting game series has been driving the world to new heights of excitement with its appealing characters and unique game system. Six years have passed since the last title in the series, and now KOF XV surpasses all of its predecessors in terms of graphics, systems, and online experience!</p><p class="bb_paragraph"></p><p class="bb_paragraph"><div class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1498570/extras/★製品トレーラー_海外_GIF01.gif?t=1742873915" /></div></p><p class="bb_paragraph">- A total of 39 playable fighters at launch!</p><p class="bb_paragraph">Classic popular characters, heroes and villains revived from the dead, new challengers, and more! The most epic dream match in KOF history is about to begin!</p><p class="bb_paragraph"></p><p class="bb_paragraph">- KOF's story reaches its climax!</p><p class="bb_paragraph">The latest KOF Saga continues from the previous title in Story Mode. This time, the story is coming to an explosive climax!</p><p class="bb_paragraph"></p><p class="bb_paragraph"><div class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1498570/extras/★製品トレーラー_海外_GIF03.gif?t=1742873915" /></div></p><p class="bb_paragraph">- The culmination of the series' battle system</p><p class="bb_paragraph">Inheriting the series' traditional 3-on-3 team battle, KOF XV also features the exciting new “SHATTER STRIKE” mechanic. Enjoy an unprecedented sense of speed and hype fighting game action!</p><p class="bb_paragraph"></p><p class="bb_paragraph">- Easy and versatile online play</p><p class="bb_paragraph">KOF XV features rollback netcode. There are also a variety of battle options that allow you to choose how you want to play!</p><p class="bb_paragraph"></p><p class="bb_paragraph"><div class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1498570/extras/★製品トレーラー_海外_GIF02.gif?t=1742873915" /></div></p><p class="bb_paragraph">- KOF XV is fully packed with content to enjoy</p><p class="bb_paragraph">Includes a Gallery with movies and voice samples, and a new DJ STATION with over 300 popular songs from the KOF series and more.</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

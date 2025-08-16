@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>FFVII ReImagined</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('8961abfc-0b08-4cbf-8535-d88cbb300f04/aea69b51-e5a3-4eac-85e6-c5c84da068bc.JPG');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="8961abfc-0b08-4cbf-8535-d88cbb300f04/39b48da5-bda5-405d-9855-66182a8694fd"/> FFVII ReImagined</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="8961abfc-0b08-4cbf-8535-d88cbb300f04/2b27a84a-32d4-46be-b221-8fee68c4ca35"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-4/16/2022">4/16/2022</a> 10:07:49</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-5/3/2022">5/3/2022</a> 21:07:34</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-$Check Out">$Check Out</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Playnite">Playnite</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Wanderer">Wanderer</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-8/17/2015">8/17/2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Platformer">Platformer</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-PD Design Studio">PD Design Studio</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://ffvii-reimagined.com/" target="_blank">Official Site</a><br/><a href="https://finalfantasy.fandom.com/wiki/Final_Fantasy_VII:_Re-Imagined" target="_blank">Fandom</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-[EMT] Logo Missing">[EMT] Logo Missing</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<table align="center" border="0" width="960">
+    <tbody>
+        <tr>
+            <td align="left" width="956">
+                <p>Final Fantasy VII: Re-Imagined is a project made by fans of the original game. We re-imagined how the game would be like if it&apos;s an action game. Classic 2D Side-scrollers, such as Dragons and Dungeons: Chronicles of Mystara, Streets of Rage, etc, came to our minds. We thought about how we can incorporate some of the FFVII game play elements, such as Materia and summoning of Guardian Force into a Hack and Slash genre. The result is what you can see above.</p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<p>This is a short 1 playable level demo. You get to play as Cloud or Tifa, or co-op locally (you will need at least 1 controller to go with your keyboard). Barret works as a fire support for you. He&apos;s on a timed recharged system. You can only call for him when there is at least 1 blue bar.</p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The green gem in the game allows you to summon your Guardian Forces. You charged it up by inflicting damage on enemies. For simplicity sake, Cloud is equipped with Ifrit by default, and Tifa with Shiva. Rightfully, if this is a fully developed game, players will be able to equip their Guardian Forces as they acquired them in the game.</p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; As for Materia system, we built it into the players&apos; attack. Ideally, they should be collected as players progress in the game. Again for simplicity purposes, both Cloud and Tifa comes pre-equipped with Fire, Ice and Lightning. At the end of a 4 hit combo, the Materia will be effected. Ice will freeze the enemies for X seconds for players to continue hitting them. And when the freeze ends, an extra damage is dealt to the enemies. Certain enemies are immuned.</p>
+                <p>Fire Materia creates a fire ball that moves slowly to hit enemies along its path. An explosion at the end deals extra damage.</p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<p>Lightning Materia stuns the enemies. Any other enemies that comes into contact with an electrocuted enemy will get electrocuted as well, somewhat like a domino effect, but with a &quot;taper off&quot; to prevent abuse. Unfortunately, this feature is not fully developed for this demo. We may update in future if we come around doing it.</p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<p>In the spirit of any RPG games, these Materia can be upgraded. Players accumulate experience points and can choose to upgrade various stats, such as Materia Levels, number of Summon Gems and Fire Support Bars, and even the playable character move sets.</p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<p>&nbsp;</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>&nbsp; &nbsp;&nbsp;</p>
+<p><img src="https://ffvii-reimagined.com/07controls.PNG" alt="" width="813" height="234"></p>
+<p>&nbsp; &nbsp;&nbsp;</p>
+<h3>Move List</h3>
+<p>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+<table align="center" border="0" width="960">
+    <tbody>
+        <tr>
+            <td align="left" width="216">
+                <p>&nbsp;</p>
+            </td>
+            <td align="left" width="381">Light Attack x 4<br>Heavy Attack x 4<br>Jump + Light Attack x 4<br>Jump + Heavy Attack<br>Jump &gt; Down + Heavy Attack</td>
+            <td align="left" width="291">
+                <p>Up + Heavy Attack<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Roll + Light Attack<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Roll + Heavy Attack<br>&nbsp; &nbsp; &nbsp; &nbsp; Dash + Light Attack<br>&nbsp; &nbsp; &nbsp; &nbsp; Dash + Heavy Attack &nbsp; &nbsp; &nbsp; &nbsp;</p>
+            </td>
+            <td align="left" width="54">&nbsp;</td>
+        </tr>
+    </tbody>
+</table>
+<table align="center" border="0" width="960">
+    <tbody>
+        <tr>
+            <td align="left">
+                <p><strong>Known Bugs</strong><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - Heavy Attack Button ceases to function randomly when using controllers<br>&nbsp; &nbsp; &nbsp; &nbsp; - Playable Characters may get stuck during game play. Trying performing a roll, dash or jump. Sometimes, it will fix the issue.&nbsp;</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
