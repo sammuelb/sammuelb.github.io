@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dragon Quest XI: Echoes of an Elusive Age – Definitive Edition</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('281f55ff-03d0-44f6-94e1-0051381f3af4/20c1110f-87a2-486a-b9d5-1cc10775858d.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="281f55ff-03d0-44f6-94e1-0051381f3af4/b20c4458-fcbe-48c6-8824-06b0fd5cf232.ico"/> Dragon Quest XI: Echoes of an Elusive Age – Definitive Edition</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="281f55ff-03d0-44f6-94e1-0051381f3af4/9120d304-79f3-4e96-876e-0aafbb2bcd85.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-4/16/2022">4/16/2022</a> 10:07:49</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-4/20/2022">4/20/2022</a> 18:38:43</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-#Want to Play">#Want to Play</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Playnite">Playnite</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Wanderer">Wanderer</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-12/4/2020">12/4/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-91">91</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Square Enix">Square Enix</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Square Enix">Square Enix</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/1295510" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1295510/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1295510/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=1295510" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/1295510" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1295510" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/1295510/achievements" target="_blank">Achievements</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-[EMT] Logo Missing">[EMT] Logo Missing</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					The Definitive Edition includes all the content from the original release of the acclaimed DRAGON QUEST XI, and adds extra character-specific scenarios, the choice of playing with the original soundtrack or a grand orchestral version of the music, the ability to switch between 2D and 3D graphic modes, a Japanese voice-acting option, and much more. <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1295510/extras/DQ11S_details_A.jpg?t=1622131694" /><h2 class="bb_tag">OVERVIEW</h2>DRAGON QUEST XI S is the last entry in the legendary RPG series from creator Yuji Horii, character designer Akira Toriyama and composer Koichi Sugiyama. This eleventh main entry is a completely standalone experience that features new characters, a beautifully detailed world, finely tuned turn-based combat, and an immersive story that will appeal to longtime fans and franchise newcomers alike. After its release in Japan, DRAGON QUEST XI won multiple gaming awards and received critical praise, including PlayStation’s Platinum Prize and a perfect 40/40 score from Famitsu (an influential video game publication in Japan).<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1295510/extras/DQ11S_details_B.jpg?t=1622131694" /><h2 class="bb_tag">STORY</h2><br>A young man, about to participate in his village’s coming of age ceremony, travels to a sacred stone alongside his childhood friend. After a series of unexpected events, this intrepid adventurer learns he is the reincarnation of a legendary hero from a forgotten age. <br><br>The young hero sets forth into an unknown world on a journey to unravel the mystery of his past… but the welcome he receives is far from warm. Upon revealing his identity to the King, the hero is branded as “The Darkspawn” and hunted by a relentless army.<br><br>Fleeing from his pursuers, the hero assembles a band of endearing adventurers who believe he is actually The Luminary reborn. The Luminary and his newfound companions embark on a quest that will take them across continents and over vast oceans as they learn of an ominous threat facing the world.<h2 class="bb_tag">KEY FEATURES</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/1295510/extras/DQ11S_details_C.jpg?t=1622131694" /><br><ul class="bb_ul"><li><h2 class="bb_tag">Unravel an Epic Mystery in a Riveting Tale</h2> – You are the Luminary, the reincarnation of a hero from a forgotten age. Denigrated as a demon and pursued by a malicious monarch, you must embark on a quest to uncover the mystery of your fate and save a doomed world. Be prepared for an immersive story with twists and turns that pull you in and keep you craving more.<br></li><li><h2 class="bb_tag">Assemble a Colorful Cast of Loyal Companions</h2> – Accompanying you is an endearing band of adventurers with their own rich backstories and personalities. Famed manga artist Akira Toriyama brings the characters of DRAGON QUEST to life with his one-of-a-kind style.<br></li><li><h2 class="bb_tag">Explore a Massive, Beautiful, Living World</h2> – Excitement lurks around every corner, observe NPC’s attend to their daily schedules, monsters change behaviors to fit their environments, and access new areas, by foot, on horseback or with the use of monstrous vehicles.</li></ul><img src="https://cdn.akamai.steamstatic.com/steam/apps/1295510/extras/DQ11S_details_D_png.png?t=1622131694" /><br><ul class="bb_ul"><li><h2 class="bb_tag">Engage in Classic Turn-based Battles with a Modern Twist</h2> – DRAGON QUEST XI features mechanics simple enough for beginners, but with enough depth to satisfy hardcore fans. As your adventure continues, learn incredible new abilities to take down even the most fearsome foe with your powerful allies. <br></li><li><h2 class="bb_tag">Have Some Fun &amp; Save the World</h2> – Tons of side-quests and addicting mini-games awaits you for enough content to keep you playing for well over 100 hours. You will face insurmountable odds and an evil force of unimaginable power… but while the stakes are high, there are many fun distractions to find if you know where to look.<br></li><li><h2 class="bb_tag">Challenge Yourself with the Draconian Quest</h2> - Available when you start a new game, these options allow you to craft you own customized difficulty with different settings and provide a greater challenge.</li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

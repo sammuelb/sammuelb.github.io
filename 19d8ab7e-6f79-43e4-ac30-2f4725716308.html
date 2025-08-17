@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Lost Planet 2</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('19d8ab7e-6f79-43e4-ac30-2f4725716308/24ef4c7e-d1c1-44ee-b861-5cb735ee5c01.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="19d8ab7e-6f79-43e4-ac30-2f4725716308/600c827a-7e16-42ec-ba1d-9aa842863383.ico"/> Lost Planet 2</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="19d8ab7e-6f79-43e4-ac30-2f4725716308/faebc59a-d5d1-4144-b574-de24d1670ae3.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-4/17/2022">4/17/2022</a> 8:27:13</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-4/19/2022">4/19/2022</a> 17:56:34</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-Not Interested">Not Interested</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Playnite">Playnite</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Xbox">Xbox</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-Microsoft Xbox 360">Microsoft Xbox 360</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-10/15/2010">10/15/2010</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-66">66</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-63">63</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Capcom">Capcom</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Capcom">Capcom</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Op">Co-Op</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/45750" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/45750/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/45750/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=45750" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/45750" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=45750" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-[EMT] Logo Missing">[EMT] Logo Missing</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					The larger than life action of <strong>Lost Planet 2</strong>, comes to PC! <strong>Lost Planet 2</strong> is the sequel to Lost Planet™: Extreme Condition, the landmark third-person shooter which debuted on Xbox 360 and went on to sell over 2.3 million units worldwide after its release. Lost Planet 2 offers deeper insight into the world of E.D.N III and the uncertain fate of future mankind.<br><br>Already acclaimed for its visual accomplishments from the console versions, Lost Planet 2 will define the 3D experience on the PC.  Stunning environments will immerse the player in NVIDIA Vision Surround technology, and the rebalanced gameplay and streamlined control mechanics make Lost Planet 2 PC the ultimate Lost Planet experience.<br><br>A decade has passed since the events of the first game, and the face of E.D.N. III has changed dramatically. Terraforming efforts have been successful and the ice has begun to melt, giving way to lush tropical jungles and harsh unforgiving deserts. Mankind has engaged in a civil war to take control of the precious Thermal Energy that powers weapons and vehicles on E.D.N. III and resulted in a separation into various factions.<br><br>Players will control heroes from each faction across 6 interconnected episodes, viewing the war from the perspective of each, creating a truly unique interactive experience. With this concept, players will have the opportunity to engage in the story in a much more dynamic way as plot threads evolve from different players’ perspectives.<br><br>The intense and action-packed campaign mode comes with the ability to form teams of up to 4 players online. Beyond the deep single-player and co-op modes, Lost Planet 2 is loaded with extensive multiplayer modes allowing up to 16 players to compete online, each with their own customizable avatar.<br><br>No action game would be complete without an arsenal of weaponry, and <strong>Lost Planet 2</strong> has a huge variety of hardware for players to unleash on unsuspecting enemies. Machine guns, shotguns, rocket launchers, lasers, sniper rifles, grenades and a host of other weapons are scattered across the game. The grappling hooks that made the gameplay in Lost Planet a true 3-D experience are back, allowing gamers to gain tactical advantage by moving to elevated locations quickly.<br><br>Lost Planet 2’s biggest weapons come on two legs: the heavily armed and armored robotic Vital Suits return in greater numbers and variety than the first game. There are VS that transform into other vehicles, hold up to three players and some that even take multiple players to operate.<h2 class="bb_tag"><strong>Key Features:</strong></h2><ul class="bb_ul"><li><strong>Co-op action:</strong> Team up to battle the giant Akrid in explosive 4 player online co-operative play. Teamwork is the player’s key to victory as the team is dependent on each other to succeed and survive.<br></li><li><strong>Massive scale of enemies:</strong> Players skill on the battlefield and ability to work as a team will be tested like never before against the giant Akrid. Players will utilize teamwork tactics, new weapons and a variety of vital suits (VS) to fight these larger-than-life bosses.  <br></li><li><strong>Beautiful massive environments:</strong> Capcom’s advanced graphics engine, MT Framework 2.0, and DirectX 11 support will bring the game to life with the next step in 3D fidelity and performance.  See Lost Planet 2’s world through new eyes, with support for hardware tessellation and compute shader.<br></li><li><strong>Deep level of character customization:</strong> Players will have hundreds of different ways to customize their look, nom de guerre, emotes, and weapons to truly help them define their character on the battlefield. A wide array of customizable abilities range from taking less damage, to running faster to operating data posts quicker<br></li><li><strong>Rewards System:</strong> Players will receive rewards for assisting teammates and contributing to the team’s success<br></li><li><strong>Multiplayer:</strong> Compete in 16-player multiplayer matches with nine different maps and 5 different game modes including Data Post Battle, Akrid Egg Battle, Fugitive, Elimination and Team Elimination. Additional maps will be available as downloadable content after the game’s release.<br></li><li><strong>Exciting new VS features:</strong> Based on fan feedback, the team has implemented an unbelievable variety of Vital Suits and new ways to combat VS’s.  The new VS system will have a powerful impact on the way the player takes to the war zone in Lost Planet 2.</li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

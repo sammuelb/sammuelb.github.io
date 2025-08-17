@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Solus Project</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('f1f084d7-f5b6-42e6-84ac-175cbe9d9f1c/bf488781-8d75-4057-8467-3072c09e9d06.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="f1f084d7-f5b6-42e6-84ac-175cbe9d9f1c/3c57353c-5f85-4f83-8f1d-65deb2f33c57.ico"/> The Solus Project</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="f1f084d7-f5b6-42e6-84ac-175cbe9d9f1c/cb230203-319c-44a9-9520-8fc77e6515a6.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-4/16/2022">4/16/2022</a> 10:07:50</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-5/3/2022">5/3/2022</a> 21:03:47</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-$Check Out">$Check Out</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Playnite">Playnite</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Wanderer">Wanderer</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-6/7/2016">6/7/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-77">77</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-68">68</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Grip">Grip</a><br/><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Hourences">Hourences</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Teotl Studios">Teotl Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Remote Play On TV">Remote Play On TV</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-VR">VR</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/313630" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/313630/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/313630/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=313630" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/313630" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=313630" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/313630/achievements" target="_blank">Achievements</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-[EMT] Logo Missing">[EMT] Logo Missing</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<strong>A single player exploration driven adventure with survival elements, set on a mysterious and seemingly uninhabited alien planet.  Survive through exploration, and unlock the mysteries of Gliese-6143-C. From the creators of &quot;Unmechanical&quot; and successor to &quot;The Ball&quot;.</strong><br><br><i>Earth has been destroyed and mankind lingers on in a small fleet of ships near Pluto. As humanity's last hope, you are sent to scout a distant planet as a potential location for a colony. After years of space travel disaster strikes however, and your ship is destroyed when approaching the planet...<br><br>With your team members dead and your equipment gone you have no way of communicating or receiving help from anyone... you are completely and utterly alone...<br><br>Desperately you look for a way of phoning home, but as you explore the seemingly desolate planet, you uncover the dark secrets buried within the depths. In this otherworldly odyssey you uncover mystery upon mystery as you try to survive the harsh climate.</i><br><br><strong>FEATURES</strong><br><br><ul class="bb_ul"><li><strong>Explore</strong> - Unlock the depths of the uncharted planet, and discover the secrets buried deep below. Delve into huge cave systems and tombs and uncover over 200 secrets. <br></li><li><strong>Handcrafted</strong>  - 10 large entirely handcrafted levels to explore. Explore and puzzle your way through 5 islands and 5 large tombs/caves.<br></li><li><strong>Atmosphere</strong> - Atmosphere rich environment that is fully dynamic. An alien day and night cycle and a dynamic weather system that calculates everything from temperature, wind, humidity, cloud coverage impact on the climate and so on. It handles ocean tides. Plants respond to the climate. Storms form. Earthquakes happen.<br></li><li><strong>Survive</strong> - Survive the extreme climate, tornadoes, storms, meteors, lightning, and not least the dark secrets buried beneath the surface. <br></li><li><strong>VR</strong> - Supports Vive and Oculus, including room space and motion controllers. Explore the huge world start to end in VR! (*Some VR features are still in development - see notes at the bottom for info)</li></ul><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/313630/extras/newsteambanner3.jpg?t=1480876448" /><br><br><strong>FEATURES CONTINUED</strong><br><ul class="bb_ul"><li><strong>Depth</strong> - Plants grow and rot. Ocean tide based on the moon. Your body responds to everything from getting wet to lack of sleep to walking uphill to the humidity. Hundreds of upgrades to be found. Secret areas within secret areas within secret areas.<br></li><li><strong>Savior</strong> - Your death means the end of mankind. Save us and rebuild a communication device to phone home, by scavenging useful items.<br></li><li><strong>Adventure</strong> - Be a pioneer, an archaeologist, and an astronaut to explore a mysterious alien planet. The adventure has a beginning and an end, but it is a harsh world. A mistake will cost you your life.</li></ul><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/313630/extras/newsteambanner2.jpg?t=1480876448" /><br><br><strong>GAMEPLAY</strong><br><ul class="bb_ul"><li><strong>Linear</strong> - The game has a start and end. It is a singleplayer adventure with 10 large levels.<br></li><li><strong>Your Time</strong>- Scale the game as you wish. Go from a super hardcore experience to a relaxing stroll on an alien planet. In fact you can cheat old school console style even. It is your time, your experience.<br></li><li><strong>Just You</strong> - Little hand holding. No obvious enemies. It is just you. All alone by yourself.<br></li><li><strong>Old school</strong> - Fond memories of games from 10, 20 years ago? So do we. Complex level layouts. Dozens of secret areas. Keys to unlock doors. Underground environments. A ~ key to open the game console.<br></li><li><strong>Exploration</strong> - There are hundreds and hundreds of things to find hidden away in the world. Secret areas the size of modern &quot;next gen levels&quot;. Just how deep does the rabbit hole go?<br></li><li><strong>Puzzles</strong> - Puzzle your way through environmental puzzles left by an alien civilization, like our titles Unmechanical and The Ball. </li></ul><br><strong>THE PLANET</strong><br><ul class="bb_ul"><li><strong>World</strong> - Gliese-6143-C is a harsh and barren planet, covered by a vast ocean. Days are over 45C/113F, and nights under -30C/F.<br></li><li><strong>Archipelago</strong> - 5 islands, with a shallow sea between them and connected through a system of caves. To travel from one island to the next you must traverse these dark caverns.<br></li><li><strong>Wreckage</strong> - The spaceship in which you arrived crashed on arrival, and its debris is scattered across the world. Find and locate debris sites to find additional resources.<br></li><li><strong>Tombs</strong> - Megalithic tombs are all over. Clearly you were not the first intelligent being to have set foot on this planet. Who was here before? Where did they go? What happened? </li></ul><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/313630/extras/steamVRbanner.jpg?t=1480876448" /><br><br><strong>VR</strong><br><ul class="bb_ul"><li><strong>Vive/Oculus</strong> - Works on both. Supports Xbox controller on Oculus, and either the Xbox controller or motion controllers on Vive. Supports room scale for Vive. Keyboard and mouse is supported as well.<br></li><li><strong>Movement</strong> - Supports regular locomotion walking and teleporting. For rotating you can pick between room scale rotation, snapped rotation (45 degree steps), smooth rotation, or enable strafing. Movement speed can also be scaled freely.<br></li><li><strong>High end and huge</strong> - This is not a small VR demo or game. It is a massive 16 hour experiences with miles and miles worth of world to explore, and provided you have a powerful machine (980 and up) you can experience it with some of the most ambitious high end graphics tried in VR to date.</li></ul><br><i>TSP is not a pure VR game. It was designed for non-VR gameplay and thus a VR headset is in no way required to play the game. If you do have one, it is an awesome (but different) experience!<br><br>VR is work in progress - Currently not implemented: VR Loading screens and Oculus Touch. The intro tutorial is also a bit rough. Everything else works solidly. TSP received a major VR patch July 20 2016 adding VR inventory and crafting among many other fixes, and another one on December 4 2016 adding the Explorer Diary and a range of fixes.</i><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/313630/extras/newsteambanner1.jpg?t=1480876448" /><br><br><strong>ABOUT US</strong><br><br>The Solus Project is the brainchild of Sjoerd &quot;Hourences&quot; De Jong. As a one-man army he crafted the vision for the game and a large part of the game's looks. Sjoerd has over 12 years of experience in the industry and has worked for a range of large and small studios such as Starbreeze, Epic Games, Guerrilla Games, Digital Extremes, and many more.<br><br>The game has been in production since July 2013, and has a team of 5 to 10 people working on it.<br><br>Teotl is a small indie studio that was founded in 2010 and is located in Sweden. It released The Ball on PC in 2010 and followed up with Unmechanical Unmechanical on PC and iOS/Android in 2012.<br>The studio focuses on creating high quality and immersive single player experiences. The Ball won the PC Gamer USA Action / Adventure Game of the Year 2010 award.<br><br>Grip Digital is a privately owned developer and publisher of games for consoles and high-end portable devices, based in Prague, Czech Republic. The company was started by industry veterans who worked on games across all major platforms. Grip Games is working with the top independent developers to bring their games to console platforms.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

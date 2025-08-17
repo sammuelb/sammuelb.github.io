@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>DayZ</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('41b1df7e-c79c-4b3e-b934-297f33d23f2b/db1196b9-9889-4882-91f8-0c20f931f882.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="41b1df7e-c79c-4b3e-b934-297f33d23f2b/16036aa0-ecde-4564-9cec-0a7179800dd6.ico"/> DayZ</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="41b1df7e-c79c-4b3e-b934-297f33d23f2b/f5b2a85f-5a32-4de8-9733-24c4978a33d5.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-8/5/2025">8/5/2025</a> 9:02:05</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-8/5/2025">8/5/2025</a> 9:02:14</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-Not Interested">Not Interested</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-PlayStation">PlayStation</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-PlayStation">PlayStation</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-Sony PlayStation 4">Sony PlayStation 4</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-12/13/2018">12/13/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-76">76</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-69">69</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Bohemia Interactive">Bohemia Interactive</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Bohemia Interactive">Bohemia Interactive</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Op">Co-Op</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-MMO">MMO</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multi-Player">Multi-Player</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Valve Anti-Cheat Enabled">Valve Anti-Cheat Enabled</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Workshop">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://www.dayz.com" target="_blank">Official Website</a><br/><a href="http://dayz.wikia.com/wiki/DayZ_Wiki" target="_blank">Community Wiki</a><br/><a href="https://en.wikipedia.org/wiki/DayZ_(video_game)" target="_blank">Wikipedia</a><br/><a href="https://www.facebook.com/dayzdevteam" target="_blank">Facebook</a><br/><a href="https://www.youtube.com/user/DayZDevTeam" target="_blank">YouTube</a><br/><a href="https://store.steampowered.com/app/221100" target="_blank">Steam</a><br/><a href="https://twitter.com/dayz" target="_blank">Twitter</a><br/><a href="https://www.twitch.tv/directory/category/dayz" target="_blank">Twitch</a><br/><a href="https://discord.gg/dayz" target="_blank">Discord</a><br/><a href="https://www.xbox.com/en-us/games/store/dayz/BSR9NLHVF1KL" target="_blank">Xbox</a><br/><a href="https://store.playstation.com/en-us/concept/221850" target="_blank">Playstation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-PlayStation Plus">PlayStation Plus</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h2 class="bb_tag">This is your Story</h2><br>DayZ is a hardcore survival game where players must strive to endure a post-apocalyptic world populated by frenzied infected and other survivors. DayZ includes the original Chernarus terrain, and the Livonia terrain.<br><br>Chernarus – The iconic DayZ terrain, set in the post-soviet state of Chernarus and encompassing 230 km2 of hand-crafted environment based on real life locations.<br><br>Livonia – The dense 163 km2 map lets players experience the hardcore survival hit in a whole new environment. Players can put their survival skills to the test by venturing into the unfamiliar land of Livonia, and seeing just how long they can last in this deadlier-than-ever world.<br><br><div class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/24eb48d0857f9fe28d1951c2ebdd395f.poster.avif?t=1752482358" ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/24eb48d0857f9fe28d1951c2ebdd395f.webm?t=1752482358" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/24eb48d0857f9fe28d1951c2ebdd395f.mp4?t=1752482358" type="video/mp4"></video></div><h2 class="bb_tag">Meet Others</h2><br>Up to 60 players are struggling to survive by any means necessary at any given time. Make friends, kill on sight, build a base, or risk being betrayed over a can of tasty beans. Use VOIP to interact with other players however you see fit. Every encounter is meaningful when your life is always on the line. Be wary. Stay alert. Trust no one.<br><br><div class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/ff2233d1d20cc266065d83286f516b4a.poster.avif?t=1752482358" ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/ff2233d1d20cc266065d83286f516b4a.webm?t=1752482358" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/ff2233d1d20cc266065d83286f516b4a.mp4?t=1752482358" type="video/mp4"></video></div><h2 class="bb_tag">Survive Chernarus</h2><br>The infected aren’t the only ones you need to worry about – there’s also the wildlife and elements. Evade packs of wolves and frenzied bears, find shelter from the punishing rain, search for light in the darkness of night. You’ll also need to master complex survival mechanics concerning your hunger, thirst, body temperature, and more.<br><br><div class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/775b0f9ec24a12538fbd1ff6d6d27fb5.poster.avif?t=1752482358" ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/775b0f9ec24a12538fbd1ff6d6d27fb5.webm?t=1752482358" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/775b0f9ec24a12538fbd1ff6d6d27fb5.mp4?t=1752482358" type="video/mp4"></video></div><h2 class="bb_tag">Loot Up</h2><br>Always make sure your gear is ready. Patch up damaged clothes, craft improvised items, and head out to deceptively dead cities to scavenge for valuable resources. Fix a car and hide it in your secret base under a cover of well-placed traps. Step into contaminated zones if you dare and keep your eyes peeled for precious loot. Don’t forget that you won’t get far without a full hazard suit and gas mask.<br><br><div class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/5640ca620a5a6b146253438f9baff79c.poster.avif?t=1752482358" ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/5640ca620a5a6b146253438f9baff79c.webm?t=1752482358" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/5640ca620a5a6b146253438f9baff79c.mp4?t=1752482358" type="video/mp4"></video></div><h2 class="bb_tag">Take your Shot</h2><br>Intense PvP action can break out anywhere at any time, especially in hotspots like abandoned military bases, where heart-pounding firefights are all the rage. Some survivors want your loot, others are simply hunting for sport. Then there are those who are afraid you’ll shoot first. Learn how to fight and know when the time has come to swallow your pride and flee. One bullet can change absolutely everything. Always watch your back.<br><br><div class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/3df796c131dea85dd16dc9523d23bd44.poster.avif?t=1752482358" ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/3df796c131dea85dd16dc9523d23bd44.webm?t=1752482358" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/3df796c131dea85dd16dc9523d23bd44.mp4?t=1752482358" type="video/mp4"></video></div><h2 class="bb_tag">Install Mods</h2><br>Head on over to the Steam Workshop and find a customized server that fits. Join an active community of like-minded players and modify your DayZ experience to suit your taste. Browse thousands of fan-made features, maps, and guns – all of which are easily managed directly from the game launcher.<br><br><div class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/064bda472be8ab12d52c0a2a906d8e35.poster.avif?t=1752482358" ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/064bda472be8ab12d52c0a2a906d8e35.webm?t=1752482358" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/064bda472be8ab12d52c0a2a906d8e35.mp4?t=1752482358" type="video/mp4"></video></div><h2 class="bb_tag">Enter Livonia</h2><br>Teeming with wildlife, ruins, and hidden locations, Livonia offers 163 km2 of fields, forests, and mysterious landscape – a unique new experience that will appeal to newcomers and DayZ veterans alike.<br><br><div class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/aee633aaff8158c5a340f922392e8fbe.poster.avif?t=1752482358" ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/aee633aaff8158c5a340f922392e8fbe.webm?t=1752482358" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/aee633aaff8158c5a340f922392e8fbe.mp4?t=1752482358" type="video/mp4"></video></div><h2 class="bb_tag">Explore the Land</h2><br>An exciting variety of undiscovered locations awaits the brave and adventurous. Explore murky swamps, abandoned hunting cabins, sawmills and deforested areas, as well as massive quarries containing stashes of leftover explosives. <br><br><div class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/fd75c0e42e6951934ee301c25b153c05.poster.avif?t=1752482358" ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/fd75c0e42e6951934ee301c25b153c05.webm?t=1752482358" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/fd75c0e42e6951934ee301c25b153c05.mp4?t=1752482358" type="video/mp4"></video></div><h2 class="bb_tag">Follow the bear</h2><br>Livonia’s food supply is scarce. If you want to survive, you’ll have to learn how to hunt, fish, and forage in the unforgiving wilderness. Luckily, the land appears to be more alive now than it ever was before the apocalypse.<br><br><div class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/6a32e1a0f6ba26a41948f34751694ddc.poster.avif?t=1752482358" ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/6a32e1a0f6ba26a41948f34751694ddc.webm?t=1752482358" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/6a32e1a0f6ba26a41948f34751694ddc.mp4?t=1752482358" type="video/mp4"></video></div><h2 class="bb_tag">Discover the secret</h2> <br>Venture south and find the hidden entrance that leads to a mysterious underground complex. Make sure you’re with a friend while you look for a way in. And don’t forget to bring some supplies, especially a flashlight. Otherwise you might get lost in the darkened maze of corridors awaiting all who enter.<br><br><div class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/f7400494f6bac69b6a2f214ffc9ca1dd.poster.avif?t=1752482358" ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/f7400494f6bac69b6a2f214ffc9ca1dd.webm?t=1752482358" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/extras/f7400494f6bac69b6a2f214ffc9ca1dd.mp4?t=1752482358" type="video/mp4"></video></div>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
