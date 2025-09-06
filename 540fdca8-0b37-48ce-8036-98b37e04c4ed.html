@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Monument Valley</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('540fdca8-0b37-48ce-8036-98b37e04c4ed/07571184-c603-4ec2-ae0c-c962939bfcb8.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="540fdca8-0b37-48ce-8036-98b37e04c4ed/067a9959-3718-41e9-ba2e-68f9d7b0422c.ico"/> Monument Valley</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="540fdca8-0b37-48ce-8036-98b37e04c4ed/6c3859f5-bcbd-4eea-a5a4-8739ec53d996.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-9/6/2025">9/6/2025</a> 15:22:42</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-9/6/2025">9/6/2025</a> 15:23:08</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-$Check Out">$Check Out</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Epic">Epic</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Epic">Epic</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-7/12/2022">7/12/2022</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-95">95</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-90">90</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-ustwo games">ustwo games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-ustwo games">ustwo games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Family Sharing">Family Sharing</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single-Player">Single-Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="http://www.monumentvalleygame.com/" target="_blank">Official Website</a><br/><a href="https://itunes.apple.com/us/app/monument-valley/id728293409?mt=8&uo=4" target="_blank">App Store (iPhone)</a><br/><a href="https://play.google.com/store/apps/details?id=com.ustwo.monumentvalley&hl=en&gl=us" target="_blank">Google Play</a><br/><a href="https://www.twitch.tv/directory/game/Monument%20Valley" target="_blank">Twitch</a><br/><a href="https://store.playstation.com/en-us/concept/10013172" target="_blank">Playstation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1927720/extras/b67c83da861dfe2df258b21815f6a693.poster.avif?t=1756148289" width=616 height=186 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1927720/extras/b67c83da861dfe2df258b21815f6a693.webm?t=1756148289" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1927720/extras/b67c83da861dfe2df258b21815f6a693.mp4?t=1756148289" type="video/mp4"></video></span></p><p class="bb_paragraph" ><strong>Discover Monument Valley - A quest for forgiveness in a strikingly beautiful and mysterious world. </strong></p><p class="bb_paragraph" ></p><p class="bb_paragraph" >Embark on a journey of forgiveness along with Ida, the silent princess, through impossible environments and illusionary puzzles. Experience this meditative and calming puzzle game by manipulating monuments and creating evolving paths to explore new, surreal, and mysterious worlds.  </p><p class="bb_paragraph" ></p><p class="bb_paragraph" >Step into the new expanded world of Monument Valley - and experience more intriguing impossibilities than ever before.   </p><p class="bb_paragraph" ></p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1927720/extras/b3118b6f81c5dc2e1c5f1d414587818d.poster.avif?t=1756148289" width=616 height=158 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1927720/extras/b3118b6f81c5dc2e1c5f1d414587818d.webm?t=1756148289" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1927720/extras/b3118b6f81c5dc2e1c5f1d414587818d.mp4?t=1756148289" type="video/mp4"></video></span></p><h2 class="bb_tag" >The Modern Classic Comes to PC. </h2><ul class="bb_ul"><li><p class="bb_paragraph" >In this multi-award-winning title, solve tricky but immensely satisfying puzzles with optical illusions at their core.</p></li><li><p class="bb_paragraph" >Evolve landscapes to reveal paths that would have otherwise been impossible without your help.</p></li><li><p class="bb_paragraph" >As you progress, discover beautiful architecture, transforming landscapes through pushing, pulling, clicking, raising, lowering and more. </p></li></ul><p class="bb_paragraph" ></p><p class="bb_paragraph" >Ida is not alone in this world, and you will need to use your wits to outsmart the enigmatic Crow People who block the path from Ida quest for forgiveness.</p><p class="bb_paragraph" ></p><p class="bb_paragraph" > <span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1927720/extras/e86157cc36aa9a314610215a165e8d64.poster.avif?t=1756148289" width=614 height=158 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1927720/extras/e86157cc36aa9a314610215a165e8d64.webm?t=1756148289" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1927720/extras/e86157cc36aa9a314610215a165e8d64.mp4?t=1756148289" type="video/mp4"></video></span></p><h2 class="bb_tag" >Simply Explorative</h2><ul class="bb_ul"><li><p class="bb_paragraph" >Click to manipulate a beautiful variety of worlds, all built for a one-of-a-kind PC experience. Designed for players of all ages and experience levels, Monument Valley allows players to explore evolving environments, transforming scenic and visually stunning landscapes as you play. Everyone should be able to pick up, enjoy and complete Ida’s journey. This is the biggest and best way to play Monument Valley yet. </p></li></ul><p class="bb_paragraph" ></p><h2 class="bb_tag" >Beautifully Reimagined</h2><ul class="bb_ul"><li><p class="bb_paragraph" >Whether playing in Full HD, TV or on ultrawide 21:9 displays, Monument Valley looks better than ever with stunning full-screen panoramic artwork. With more perceptible visuals than ever before, what secrets will you uncover?</p></li></ul><p class="bb_paragraph" ></p><h2 class="bb_tag" >Every World Included</h2><ul class="bb_ul"><li><p class="bb_paragraph" >Monument Valley is the total collection of all Monument Valley content - with every chapter, add-on and DLC to make this the ultimate game to add to your collection. Inspired by minimalist 3D design, optical illusions, and ancient architecture from around the world, every monument is a unique, hand-crafted world to explore.  </p></li></ul><p class="bb_paragraph" ></p><h2 class="bb_tag" >Panoramic Collection Out Now</h2><ul class="bb_ul"><li><p class="bb_paragraph" ><i>Monument Valley: Panoramic Edition and Monument Valley 2: Panoramic Edition </i>are both available at an exclusive bundle price when purchased together on Steam. The Panoramic Collection is the best way to play the Monument Valley series - with every chapter and DLC included.</p></li></ul><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1927720/extras/446422c55e38c15ba3c96e3a89079a7e.poster.avif?t=1756148289" width=614 height=250 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1927720/extras/446422c55e38c15ba3c96e3a89079a7e.webm?t=1756148289" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1927720/extras/446422c55e38c15ba3c96e3a89079a7e.mp4?t=1756148289" type="video/mp4"></video></span><span class="bb_img_ctn"><picture><source srcset="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1927720/extras/52e1821786c54d4e0a56eec39745f43b.poster.avif?t=1756148289" media="(prefers-reduced-motion: reduce)"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1927720/extras/52e1821786c54d4e0a56eec39745f43b.webp?t=1756148289" class="bb_img" width=615 height=175 /></picture></span></p><p class="bb_paragraph" ><strong>ustwo games are proud independent developers, best known for the award-winning Monument Valley series, Land’s End, Assemble with Care and Alba: A Wildlife Adventure.</strong></p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
