@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mark of the Deep</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('ff93cad1-5261-4a35-b642-12dd1daba7e4/848e7b1f-32dc-4e8d-be76-71687d754012.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="ff93cad1-5261-4a35-b642-12dd1daba7e4/3180b0c2-212d-4206-aa0d-8916095f39b6.ico"/> Mark of the Deep</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="ff93cad1-5261-4a35-b642-12dd1daba7e4/6c1cec3b-7bee-42bb-a6a0-3d67fdd24986.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-4/18/2026">4/18/2026</a> 10:07:54</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-4/18/2026">4/18/2026</a> 10:08:11</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-#Want to Play">#Want to Play</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Playnite">Playnite</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Wanderer">Wanderer</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-1/24/2025">1/24/2025</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-72">72</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-81">81</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Mad Mimic">Mad Mimic</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Light Up Games">Light Up Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Family Sharing">Family Sharing</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/1933370" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1933370/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1933370/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=1933370" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/1933370" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1933370" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/1933370/achievements" target="_blank">Achievements</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-Action">Action</a><br/><a href="#quicklink-Action Roguelike">Action Roguelike</a><br/><a href="#quicklink-Action-Adventure">Action-Adventure</a><br/><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Atmospheric">Atmospheric</a><br/><a href="#quicklink-Combat">Combat</a><br/><a href="#quicklink-Controller">Controller</a><br/><a href="#quicklink-Dark Fantasy">Dark Fantasy</a><br/><a href="#quicklink-Exploration">Exploration</a><br/><a href="#quicklink-Fantasy">Fantasy</a><br/><a href="#quicklink-Isometric">Isometric</a><br/><a href="#quicklink-Metroidvania">Metroidvania</a><br/><a href="#quicklink-Multiple Endings">Multiple Endings</a><br/><a href="#quicklink-Narrative">Narrative</a><br/><a href="#quicklink-Pirates">Pirates</a><br/><a href="#quicklink-Roguelike">Roguelike</a><br/><a href="#quicklink-Singleplayer">Singleplayer</a><br/><a href="#quicklink-Souls-like">Souls-like</a><br/><a href="#quicklink-Story Rich">Story Rich</a><br/><a href="#quicklink-Stylized">Stylized</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1933370/extras/fabeaef64489853e425d0821fd3e9aea.poster.avif?t=1776270065"></span></p><p class="bb_paragraph">Mark of the Deep is an epic pirate adventure with a strong narrative and a thrilling mix of elements from acclaimed Metroidvania and Souls-Like games. Embark on this journey as the pirate Rookie, explore the mysteries of a cursed island and find your missing pirate crew! </p><p class="bb_paragraph"></p><h2 class="bb_tag">EMBARK ON THIS EPIC PIRATE ADVENTURE!</h2><p class="bb_paragraph">A pirate ship wrecked on a mystic island, till then known only by myths n’ tales. Play as Marcus “Rookie” Ramsey and explore the eerie areas of this island surrounded by a mysterious curse in search of your missing crew: the Angry Mermaids! </p><p class="bb_paragraph"></p><h2 class="bb_tag">DEFEAT CURSED CREATURES TO SURVIVE!</h2><p class="bb_paragraph">In this diversely hostile environment, you need to face a wide variety of dangers to find your lost crewmates, including abyssal monsters, undead creatures and menacing cultists. Fight against over 80 enemies and 16 bosses in challenging battles inspired by souls-like games!</p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1933370/extras/859a3550a7e1ae9f2ed36b844e1044bc.poster.avif?t=1776270065"></span></p><h2 class="bb_tag">UNLEASH THE POWER OF YOUR MARKS!</h2><p class="bb_paragraph">As a newfound Mark Keeper, Rookie can unlock new abilities that change how you fight enemies and explore the environments! Discover new skills, weapons and trinkets to upgrade your combat abilities and make your way through new areas of the island. </p><p class="bb_paragraph"></p><h2 class="bb_tag">GATHER YOUR CREWMATES!</h2><p class="bb_paragraph">Meet a fully-voiced cast of pirates, abyssal creatures and many other characters trapped in the cursed island with you! Rescue old friends and make new allies as you unravel the mysteries of the native inhabitants of the island: the Old Folks.  </p><p class="bb_paragraph"></p><h2 class="bb_tag">CHOOSE YOUR OWN PATH!</h2><p class="bb_paragraph">The abyssal corruption affects everyone around you, including your cherished allies. You have the choice to help those in need by completing their quests and dealing with hard choices along the way. Discover multiple endings in your goal to escape the island! </p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1933370/extras/0da0e0ce69688ee6955727f45687a758.avif?t=1776270065" data-big-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1933370/extras_big/0da0e0ce69688ee6955727f45687a758.avif?t=1776270065"></span></p><h2 class="bb_tag">JOIN OUR CREW!</h2><p class="bb_paragraph">From the developers of Dandy Ace and No Heroes Here, join the <strong>Mad Mimic</strong> Discord Server to meet the Mark of the Deep community and share your experience with the game!</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
