@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>SIGNALIS</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('f56110bb-da6e-4860-b200-10312b26eac1/0cbfed79-f201-470c-a11a-b776059f08d8.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="f56110bb-da6e-4860-b200-10312b26eac1/974c8b9e-3e49-4555-bf73-9ea6b85d903a.ico"/> SIGNALIS</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="f56110bb-da6e-4860-b200-10312b26eac1/8af6d21a-7068-4f04-9826-a19581599fb5.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-8/8/2026">8/8/2026</a> 8:06:38</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-8/8/2026">8/8/2026</a> 8:06:42</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-Not Interested">Not Interested</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-PlayStation">PlayStation</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-PlayStation">PlayStation</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-Sony PlayStation 4">Sony PlayStation 4</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-10/27/2022">10/27/2022</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-95">95</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-85">85</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-rose-engine">rose-engine</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Balor Games">Balor Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Dualsense Controller Support">Dualsense Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Dualshock Controller Support">Dualshock Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Family Sharing">Family Sharing</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single-Player">Single-Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://www.facebook.com/roseengine" target="_blank">Facebook</a><br/><a href="https://twitter.com/LastStarfarer" target="_blank">Twitter</a><br/><a href="https://store.steampowered.com/app/1262350/SIGNALIS" target="_blank">Steam</a><br/><a href="http://rose-engine.org/signalis" target="_blank">Official Website</a><br/><a href="https://www.youtube.com/c/roseengine" target="_blank">YouTube</a><br/><a href="https://www.twitch.tv/directory/game/Signalis" target="_blank">Twitch</a><br/><a href="https://en.wikipedia.org/wiki/Signalis" target="_blank">Wikipedia</a><br/><a href="https://www.reddit.com/r/signalis" target="_blank">Subreddit</a><br/><a href="https://discord.gg/invite/signalis" target="_blank">Discord</a><br/><a href="https://signalis.wiki.gg/" target="_blank">Community Wiki</a><br/><a href="https://www.nintendo.com/store/products/signalis-switch/" target="_blank">Nintendo</a><br/><a href="https://store.playstation.com/en-us/concept/10005369" target="_blank">Playstation</a><br/><a href="https://www.xbox.com/en-us/games/store/signalis/9PLF2RS7JRZL" target="_blank">Xbox</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-PlayStation Plus">PlayStation Plus</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/2cc144f06a98556d1b7a77eac3590ffc.avif?t=1773697315"></span><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/0bd5cb0af3279ccbd2b4eff035a9afe0.webp?t=1773697315"></span><br>Searching for dreams inside of a nightmare<br>	<br>Awaken from slumber and explore a surreal retrotech world as Elster, a technician Replika searching for her lost partner and her lost dreams. Discover terrifying secrets, challenging puzzles, and nightmarish creatures in a tense and melancholic experience of cosmic dread and classic psychological survival horror.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/0bd5cb0af3279ccbd2b4eff035a9afe0.webp?t=1773697315"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/dc137dd5cfa15cf3e35c25858da6ee57.poster.avif?t=1773697315"></span><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/2ffea01fe33b2bd1b42e670e56ad83c9.avif?t=1773697315"></span><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/0bd5cb0af3279ccbd2b4eff035a9afe0.webp?t=1773697315"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/21081900fb28a0da7f561dda5c5d8544.poster.avif?t=1773697315"></span><br>SIGNALIS is set in a dystopian future where humanity has colonized the solar system, and the totalitarian regime of Eusan maintains an iron grip through aggressive surveillance and propaganda. Humanoid androids known as Replikas live among the populace, acting as workers, civil servants, and Protektors alongside the citizens they are designed to resemble.<br><br>The story of SIGNALIS begins as a Replika named Elster awakens from cryostasis in a wrecked vessel. Now stranded on a cold planet, she sets out on a journey into depths unknown.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/0bd5cb0af3279ccbd2b4eff035a9afe0.webp?t=1773697315"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/49906939f5426c854ec1be48eaf52fcb.poster.avif?t=1773697315"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/996594ad919c09192a7fa5de8b68b1eb.poster.avif?t=1773697315"></span><br>Experience fear and apprehension as you encounter strange horrors, carefully manage scarce resources, and seek solutions to challenging riddles.<br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/0bd5cb0af3279ccbd2b4eff035a9afe0.webp?t=1773697315"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/9099b3e9f319421abc7112b880e741a7.poster.avif?t=1773697315"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/0578bbf175ef2cf2160f0ac65a3562a4.poster.avif?t=1773697315"></span><br>Explore the dim corners of a derelict spaceship, delve into the mysterious fate of the inhabitants of a doomed facility, and seek what lies beneath.<br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/0bd5cb0af3279ccbd2b4eff035a9afe0.webp?t=1773697315"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/a1a2661f63aa3f5de5faddfee4d954f1.poster.avif?t=1773697315"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/bce1e8719aa1f4d2587b882dc9be7268.poster.avif?t=1773697315"></span><br>Discover an atmospheric science-fiction tale of identity, memory, and the terror of the unknown and unknowable, inspired by classic cosmic horror and the works of Stanley Kubrick, Hideaki Anno, and David Lynch.<br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/0bd5cb0af3279ccbd2b4eff035a9afe0.webp?t=1773697315"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/93ce71a76cd0ad256d53b1a8c03ea522.poster.avif?t=1773697315"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/cf8205be6add209997a27d865d8d79df.poster.avif?t=1773697315"></span><br>Wander a brutalist nightmare driven by fluid 3D character animations, dynamic lights and shadows, and complex transparency effects, complemented by cinematic sci-fi anime storytelling.<br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1262350/extras/0bd5cb0af3279ccbd2b4eff035a9afe0.webp?t=1773697315"></span>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

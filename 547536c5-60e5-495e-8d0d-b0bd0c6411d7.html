@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Wobbly Life</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('547536c5-60e5-495e-8d0d-b0bd0c6411d7/391f199e-89a5-4cef-8324-6d7815dfd9f7.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="547536c5-60e5-495e-8d0d-b0bd0c6411d7/8d952aa3-61cd-48d0-b0ee-bc94d83ab74a.ico"/> Wobbly Life</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="547536c5-60e5-495e-8d0d-b0bd0c6411d7/be64af12-87c5-4372-9536-39801b079e45.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-9/5/2026">9/5/2026</a> 13:10:04</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-9/5/2026">9/5/2026</a> 13:10:24</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-Not Interested">Not Interested</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-PlayStation">PlayStation</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-PlayStation">PlayStation</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-Sony PlayStation 5">Sony PlayStation 5</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-9/18/2025">9/18/2025</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-95">95</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-66">66</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-RubberBandGames">RubberBandGames</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-RubberBandGames">RubberBandGames</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Op">Co-Op</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Dualsense Controller Support">Dualsense Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Dualshock Controller Support">Dualshock Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Family Sharing">Family Sharing</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multi-Player">Multi-Player</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Remote Play On TV">Remote Play On TV</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen">Shared/Split Screen</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen Co-Op">Shared/Split Screen Co-Op</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single-Player">Single-Player</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Trading Cards">Trading Cards</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Workshop">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/1211020/Wobbly_Life/" target="_blank">Steam</a><br/><a href="http://www.WobblyLife.net" target="_blank">Official Website</a><br/><a href="https://www.twitch.tv/directory/game/Wobbly%20Life" target="_blank">Twitch</a><br/><a href="https://www.facebook.com/WobblyLife" target="_blank">Facebook</a><br/><a href="https://x.com/WobblyLifeDev" target="_blank">Twitter</a><br/><a href="https://www.youtube.com/@RubberBandGames" target="_blank">YouTube</a><br/><a href="https://discord.com/invite/apqDWzm" target="_blank">Discord</a><br/><a href="https://www.xbox.com/en-us/games/store/wobbly-life/9NS86BQ33SPX" target="_blank">Xbox</a><br/><a href="https://store.playstation.com/en-us/concept/10004896" target="_blank">Playstation</a><br/><a href="https://www.nintendo.com/us/store/products/wobbly-life-switch/" target="_blank">Nintendo</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph"> </p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/01ee53dcb4c7bcbf21c13c054ae946e2.poster.avif?t=1761037189"></span></p><p class="bb_paragraph">Grandma has kicked you out into the big wide Wobbly world demanding you go and GET A JOB! She would be so proud if you could earn some money and get your own house one day! </p><p class="bb_paragraph"></p><p class="bb_paragraph">It's time to start earning and living your best <strong>Wobbly Life</strong>! </p><p class="bb_paragraph"></p><ul class="bb_ul"><li><p class="bb_paragraph"><strong>1-4 players</strong> Online and Local split-screen co-op  </p></li><li><p class="bb_paragraph"><strong>Open-world sandbox</strong> filled with mini-games, toys, secrets </p></li><li><p class="bb_paragraph"><strong>+100 unique missions &amp; jobs</strong> with exclusive rewards to unlock, alone or with friends  </p></li><li><p class="bb_paragraph"><strong>+90 vehicles</strong> to ride around (and crash)</p></li><li><p class="bb_paragraph"><strong>+500 clothes</strong> items to show-off in your wobbly look   </p></li></ul><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/42dcf3e134cab1e08dcb425683ede0f4.poster.avif?t=1761037189"></span></p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/7f2ac990988a5b91ffe7b7b12266ae5a.avif?t=1761037189"></span>Let's start exploring! Almost everything is interactive – grab, play, and experiment in a world filled with props, mini-games, and surprises.  </p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/eae186dda8121a7048fd963b7e1f2e03.poster.avif?t=1761037189"></span></p><p class="bb_paragraph">Experience the joy solo or share your adventures with up to 4 players in online or local co-op, all in one big Wobbly world.  </p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/0de29cf2663a83a53064974c06d211bd.poster.avif?t=1761037189"></span></p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/f47cc03f0a53810375eb9fedf5e909a1.avif?t=1761037189"></span>Embark on story missions, each offering unique rewards through fun puzzles and challenges. Unveil the mysteries of the tropical island, uncover the mountain’s secrets, delve into hidden caves...   </p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/86fbfcbe9112432746d09eb7eae99099.poster.avif?t=1761037189"></span></p><p class="bb_paragraph">The Wobbly Museum has lost all its artifacts! Maybe you can help? Buy treasure maps and solve clues to find all the Museums' lost treasures and unlock exciting rewards.  </p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/44ff4acd5aa4d2e2897bf8b963f86f29.poster.avif?t=1761037189"></span></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/bd96d0e2b02a2a21d845ea2281e1d2f2.avif?t=1761037189"></span>Make grandma happy and go get that job! Earn money by choosing from +20 exciting jobs, each bringing their new unique challenges. From pizza delivery to firefighting, taxi driver to disco dancer… your Wobbly dream job is waiting for you.</p><p class="bb_paragraph"></p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/b394baae24c8455bf2f5a51b575ec65b.poster.avif?t=1761037189"></span></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/8cb0283d8fafd096133286b3dd7dfd18.avif?t=1761037189"></span></p><p class="bb_paragraph">The Wobbly Space Programme is looking for new recruits. Space is a whole new open world, with new jobs, missions, and secrets to uncover. You'll even get to fly your own spaceships too, so what are you waiting for!</p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/582cbbab4f4099493434a71df151f504.poster.avif?t=1761037189"></span></p><p class="bb_paragraph"></p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/81b833e7fdbb3a49512eb0b1f1c124d7.avif?t=1761037189"></span>Once you’ve fattened up your bank account why not go on a shopping spree? Visit the Pet Shop to buy a faithful companion, buy and unlock +500 clothes items and choose from +90 different vehicles.   </p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/d96f0894eafb510222c503ce57cfd9f6.poster.avif?t=1761037189"></span></p><p class="bb_paragraph">When you’ve really made the big bucks, you can even buy a house: from a wooden cabin to a huge fancy mansion, Wobbly Island has a home for everyone!  </p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/20f043d9a564ec6b3c70ce86356bd201.poster.avif?t=1761037189"></span></p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/092a90257ba80317817873c8bfbb7484.avif?t=1761037189"></span>Want to take a break from Wobbly Island? Try out Arcade mode! Discover new game modes: Trash Zone, Hide &amp; Seek, Wobble Run and Sandbox. Each have customizable settings for you to play with, multiple mini-games and new areas to have fun in! </p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/bf13cec01a4ec690d42de4fe5449139d.avif?t=1761037189"></span></p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/66d3df03f7973256d6e2b8f44d8d2c1e.avif?t=1761037189"></span>Create your own Wobbly Life Content and share it with players across the world in the Steam Workshop. Prefer to explore rather than create? Dive into an ever-growing library of creative wonders from our Wobbly community. </p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1211020/extras/02f24fbf6d6dbd3cd422795f25388871.avif?t=1761037189"></span></p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
